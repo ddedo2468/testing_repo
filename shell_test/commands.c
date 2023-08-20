@@ -2,8 +2,9 @@
 
 /**
   * execute_command - Executes a command with the provided arguments
+  * by creating a child process
   * @command: The command to be executed
-  * @args: An array of argument strings for the command
+  * @args: pointer to array of argument strings for the command
   * Return: void
   */
 void execute_command(char *command, char **args)
@@ -19,7 +20,7 @@ void execute_command(char *command, char **args)
 	{
 		if (execve(command, args, NULL) == -1)
 		{
-			perror("execve");
+			fprintf(stderr, "Error: %s\n", strerror(errno));
 			exit(EXIT_FAILURE);
 		}
 	}

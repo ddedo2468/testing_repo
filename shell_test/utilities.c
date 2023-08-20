@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
-* remove_newline - Removes a trailing newline character from a string
-* @str: The string from which to remove the newline
-* Return: void
-*/
+  * remove_newline - Removes a trailing newline character from a string
+  * @str: The string from which to remove the newline
+  * Return: void
+  */
 void remove_newline(char *str)
 {
 
@@ -16,11 +16,11 @@ void remove_newline(char *str)
 }
 
 /**
-* tokenize_input - Tokenizes an input string into an array of tokens
-* @input: The input string to be tokenized
-* @tokens: An array of pointers to store the tokens
-* Return: The number of tokens
-*/
+  * tokenize_input - Parsing input string and split it into tokens
+  * @input: The input string to be tokenized
+  * @tokens: An array of pointers to store the tokens
+  * Return: The number of tokens
+  */
 int tokenize_input(char *input, char **tokens)
 {
 	int token_count = 0;
@@ -38,28 +38,28 @@ int tokenize_input(char *input, char **tokens)
 }
 
 /**
-* print_prompt - Prints the shell prompt
-* Return: void
-*/
+  * print_prompt - Prints the shell prompt line
+  * Return: void
+  */
 void print_prompt(void)
 {
 	printf("#Shell$ ");
 }
 
 /**
-* handle_exit_command - Handles the exit command, terminating the shell
-* Return: void
-*/
+  * handle_exit_command - Handles the exit command, terminating the shell
+  * Return: void
+  */
 void handle_exit_command(void)
 {
 	exit(EXIT_SUCCESS);
 }
 
 /**
-* handle_env_command - Handles the environment command,
-* printing environment variables
-* Return: void
-*/
+  * handle_env_command - Handles the environment command,
+  * printing environment variables
+  * Return: void
+  */
 void handle_env_command(void)
 {
 	int i;

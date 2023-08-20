@@ -1,8 +1,9 @@
 #include "shell.h"
+
 /**
- * run_shell - Runs the interactive shell
- * Return: void
- */
+  * run_shell - Runs the interactive shell
+  * Return: void
+  */
 void run_shell(void)
 {
 	int interactive_mode = isatty(fileno(stdin));
