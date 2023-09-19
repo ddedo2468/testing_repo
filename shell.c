@@ -8,6 +8,7 @@ void run_shell(void)
 {
 	int interactive_mode = isatty(fileno(stdin));
 	char input[MAX_INPUT_LENGTH], *args[MAX_ARG_COUNT];
+	int exit_status = 0;
 
 	while (1)
 	{
@@ -31,7 +32,7 @@ void run_shell(void)
 
 		if (!strcmp(input, "exit"))
 		{
-			handle_exit_command();
+			handle_exit_command(exit_status);
 			break;
 		}
 		if (!strcmp(input, "env"))
@@ -41,10 +42,8 @@ void run_shell(void)
 		}
 
 		tokenize_input(input, args);
-		execute_command(args[0], args);
+		execute_command(args[0], args, &exit_status);
 
-		if (!interactive_mode)
-			print_prompt(interactive_mode);
 	}
 }
 /**
