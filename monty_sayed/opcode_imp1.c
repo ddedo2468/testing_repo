@@ -6,6 +6,7 @@ stack_t *stack = NULL;
 
 void push(stack_t **stack) 
 {
+	int value;
     stack_t *new_node = malloc(sizeof(stack_t));
     if (new_node == NULL) 
     {
@@ -13,6 +14,7 @@ void push(stack_t **stack)
         exit(EXIT_FAILURE);
     }
 
+    new_node->n = value;
     new_node->prev = NULL;
     new_node->next = *stack;
 
