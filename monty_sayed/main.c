@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "monty.h"
+/**
+ * main - Monty bytecode interpreter entry point
+ * @argc: Number of command-line arguments
+ * @argv: Array of command-line argument strings
+ * Return: 0 on success
+ */
 
 int main(int argc, char *argv[])
 {
