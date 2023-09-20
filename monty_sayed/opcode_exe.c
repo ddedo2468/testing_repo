@@ -3,6 +3,7 @@
  * execute - Execute Monty bytecode command
  * @opcode: The Monty bytecode command to execute
  * @stack: Pointer to the top of the stack
+ * @line_number: Pointer to the current line number
  */
 void execute(char *opcode, stack_t **stack, unsigned int *line_number)
 {

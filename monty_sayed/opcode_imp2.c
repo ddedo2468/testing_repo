@@ -5,6 +5,7 @@
 /**
  * add - Add the top two elements of the stack
  * @stack: Pointer to the top of the stack
+ * @line_number: Pointer to the current line number
  */
 void add(stack_t **stack, unsigned int *line_number)
 {

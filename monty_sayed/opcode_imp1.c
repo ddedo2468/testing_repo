@@ -5,6 +5,7 @@
 /**
  * push - Push an integer onto the stack
  * @stack: Pointer to the top of the stack
+ * @line_number: Pointer to the current line number
  */
 void push(stack_t **stack, unsigned int *line_number)
 {
@@ -57,6 +58,7 @@ void pall(stack_t **stack)
 /**
  * pint - Print the top element of the stack
  * @stack: Pointer to the top of the stack
+ * @line_number: Pointer to the current line number
  */
 void pint(stack_t **stack, unsigned int *line_number)
 {
@@ -72,6 +74,7 @@ void pint(stack_t **stack, unsigned int *line_number)
 /**
  * pop - Remove the top element of the stack
  * @stack: Pointer to the top of the stack
+ * @line_number: Pointer to the current line number
  */
 void pop(stack_t **stack, unsigned int *line_number)
 {
@@ -95,6 +98,7 @@ void pop(stack_t **stack, unsigned int *line_number)
 /**
  * swap - Swap the top two elements of the stack
  * @stack: Pointer to the top of the stack
+ * @line_number: Pointer to the current line number
  */
 void swap(stack_t **stack, unsigned int *line_number)
 {
