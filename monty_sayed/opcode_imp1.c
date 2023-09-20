@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include "monty.h"
 
-stack_t *stack = NULL;
-
 /**
  * push - Push an integer onto the stack
  * @stack: Pointer to the top of the stack
