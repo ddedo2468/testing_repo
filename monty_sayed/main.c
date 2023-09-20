@@ -2,19 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include "monty.h"
+
 /**
  * main - Monty bytecode interpreter entry point
  * @argc: Number of command-line arguments
  * @argv: Array of command-line argument strings
  * Return: 0 on success
  */
-
 int main(int argc, char *argv[])
 {
-	FILE *file;
-	char *line = NULL;
-	char *opcode;
 	unsigned int line_number = 1;
+	FILE *file;
+	char *command = NULL;
+	char *opcode;
 
 	if (argc != 2)
 	{
@@ -27,25 +27,25 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	line = (char *)malloc(256);
-	if (line == NULL)
+	command = (char *)malloc(256);
+	if (command == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	while (fgets(line, 256, file) != NULL)
+	while (fgets(command, 256, file) != NULL)
 	{
-		opcode = strtok(line, " \t\n");
+		opcode = strtok(command, " \t\n");
 		if (opcode != NULL && strcmp(opcode, "#") != 0)
 		{
-			execute(opcode, &stack);
+			execute(opcode, &stack, &line_number);
 		}
 		line_number++;
 	}
 	fclose(file);
-	if (line != NULL)
+	if (command != NULL)
 	{
-		free(line);
+		free(command);
 	}
 	return (0);
 }
