@@ -9,8 +9,7 @@ int main(int argc, char *argv[])
 {
         FILE *file;
         char *line = NULL;
-        size_t len = 0;
-        ssize_t read;
+	char *opcode;
     
         if (argc != 2)
         {
@@ -25,12 +24,19 @@ int main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
         }
 
-        while ((read = getline(&line, &len, file)) != -1)
+	line = (char *)malloc(256);
+	if (line == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+        while (fgets(line, 256, file) != NULL)
         {
-                char *opcode = strtok(line, " \t\n");
+                opcode = strtok(line, " \t\n");
                 if (opcode != NULL && strcmp(opcode, "#") != 0)
                 {
-                        execute_instruction(opcode, &stack);
+                        execute(opcode, &stack);
                 }
                 line_number++;
         }

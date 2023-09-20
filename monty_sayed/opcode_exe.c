@@ -1,6 +1,6 @@
 #include "monty.h"
 
-void execute_instruction(char *opcode, stack_t **stack)
+void execute(char *opcode, stack_t **stack)
 {
     if (strcmp(opcode, "push") == 0)
     {
@@ -29,5 +29,10 @@ void execute_instruction(char *opcode, stack_t **stack)
     else if (strcmp(opcode, "nop") == 0)
     {
         nop(stack);
+    }
+    else
+    {
+        fprintf(stderr, "L%d: unknown instruction: %s\n", line_number, opcode);
+        exit(EXIT_FAILURE);
     }
 }

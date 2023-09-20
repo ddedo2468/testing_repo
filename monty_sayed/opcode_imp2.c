@@ -4,6 +4,8 @@
 
 void add(stack_t **stack) 
 {
+	stack_t *temp;
+
     if (*stack == NULL || (*stack)->next == NULL) 
     {
         fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
@@ -12,7 +14,7 @@ void add(stack_t **stack)
 
     (*stack)->next->n += (*stack)->n;
 
-    stack_t *temp = *stack;
+    temp = *stack;
     *stack = (*stack)->next;
     if (*stack != NULL) 
     {
@@ -21,6 +23,6 @@ void add(stack_t **stack)
     free(temp);
 }
 
-void nop(stack_t **stack) 
+void nop(stack_t **stack __attribute__((unused))) 
 {
 }

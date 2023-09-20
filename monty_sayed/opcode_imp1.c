@@ -7,7 +7,18 @@ stack_t *stack = NULL;
 void push(stack_t **stack) 
 {
 	int value;
-    stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new_node;
+	char *value_str;
+
+	value_str = strtok(NULL, " \t\n");
+	if (value_str == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	value = atoi(value_str);	
+	new_node = malloc(sizeof(stack_t));
     if (new_node == NULL) 
     {
         fprintf(stderr, "Error: malloc failed\n");
@@ -49,13 +60,14 @@ void pint(stack_t **stack)
 
 void pop(stack_t **stack) 
 {
+	stack_t *temp;
     if (*stack == NULL) 
     {
         fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
         exit(EXIT_FAILURE);
     }
 
-    stack_t *temp = *stack;
+    temp = *stack;
     *stack = (*stack)->next;
     if (*stack != NULL) 
     {
@@ -66,13 +78,14 @@ void pop(stack_t **stack)
 
 void swap(stack_t **stack) 
 {
+	int temp;
     if (*stack == NULL || (*stack)->next == NULL) 
     {
         fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
         exit(EXIT_FAILURE);
     }
 
-    int temp = (*stack)->n;
+    temp = (*stack)->n;
     (*stack)->n = (*stack)->next->n;
     (*stack)->next->n = temp;
 }

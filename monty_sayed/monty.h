@@ -28,6 +28,6 @@ void pop(stack_t **stack);
 void swap(stack_t **stack);
 void add(stack_t **stack);
 void nop(stack_t **stack);
-void execute_instruction(char *opcode, stack_t **stack);
+void execute(char *opcode, stack_t **stack);
 
 #endif
