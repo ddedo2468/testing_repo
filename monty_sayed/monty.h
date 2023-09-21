@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <stdbool.h>
 #include <string.h>
 
 /**
@@ -48,5 +50,7 @@ void swap(stack_t **stack, unsigned int *line_number);
 void add(stack_t **stack, unsigned int *line_number);
 void nop(stack_t **stack);
 void execute(char *opcode, stack_t **stack, unsigned int *line_number);
+void free_stk(stack_t *stack);
+bool is_integer(const char *str);
 
 #endif

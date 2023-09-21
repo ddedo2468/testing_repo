@@ -38,6 +38,7 @@ void execute(char *opcode, stack_t **stack, unsigned int *line_number)
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction: %s\n", *line_number, opcode);
+		free_stk(*stack);
 		exit(EXIT_FAILURE);
 	}
 }
