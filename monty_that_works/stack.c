@@ -1,12 +1,7 @@
 #include "monty.h"
-extern int line_number;
 
 stack_t *stack = NULL;
 
-/**
- * push - Push an element onto the stack
- * @value: Value to push onto the stack
- */
 void push(int value)
 {
     stack_t *new_node;
@@ -15,16 +10,18 @@ void push(int value)
     if (new_node == NULL)
     {
         fprintf(stderr, "Error: malloc failed\n");
-        freeStack();
         exit(EXIT_FAILURE);
     }
 
     new_node->n = value;
     new_node->prev = NULL;
-    new_node->next = stack;
+    new_node->next = NULL;
 
     if (stack != NULL)
+    {
+        new_node->next = stack;
         stack->prev = new_node;
+    }
 
     stack = new_node;
 }
@@ -43,6 +40,25 @@ void pall()
     }
 }
 
+// Function to check if a string is a valid integer
+int isNumber(char *str)
+{
+    if (str == NULL || *str == '\0')
+        return 0;
+
+    int i = 0;
+    if (str[0] == '-')
+        i = 1;
+
+    for (; str[i] != '\0'; i++)
+    {
+        if (str[i] < '0' || str[i] > '9')
+            return 0;
+    }
+
+    return 1;
+}
+
 /**
  * pint - Print the top element of the stack
  */
@@ -58,9 +74,6 @@ void pint()
     printf("%d\n", stack->n);
 }
 
-/**
- * pop - Remove the top element of the stack
- */
 void pop()
 {
     stack_t *temp;
@@ -68,7 +81,6 @@ void pop()
     if (stack == NULL)
     {
         fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-        freeStack();
         exit(EXIT_FAILURE);
     }
 
@@ -79,6 +91,7 @@ void pop()
 
     free(temp);
 }
+
 
 /**
  * swap - Swap the top two elements of the stack
@@ -122,15 +135,17 @@ void nop()
 {
     // This function intentionally does nothing
 }
+
+/**
+ * freeStack - Free all elements of the stack
+ */
 void freeStack()
 {
-    stack_t *current = stack;
-    stack_t *temp;
-
-    while (current != NULL)
+    while (stack != NULL)
     {
-        temp = current;
-        current = current->next;
+        stack_t *temp = stack;
+        stack = stack->next;
         free(temp);
     }
+    stack = NULL;
 }

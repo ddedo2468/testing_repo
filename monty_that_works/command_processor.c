@@ -1,23 +1,18 @@
 #include "monty.h"
 
-/**
- * processCommands - Process Monty bytecode commands from a file
- * @file: Pointer to the Monty bytecode file
- */
 void processCommands(FILE *file)
 {
-char *line = NULL;
-size_t len = 0;
+    char *line = NULL;
+    size_t len = 0;
 
-while (1)
-{
-        // Allocate memory for the line buffer
-        line = malloc(1024); // Adjust the buffer size as needed
+    while (1)
+    {
+        line = malloc(1024);
 
         if (fgets(line, 1024, file) == NULL)
         {
-            free(line); // Free the allocated memory
-            if (feof(file)) // End of file reached
+            free(line);
+            if (feof(file))
                 break;
             else
             {
@@ -29,15 +24,14 @@ while (1)
         line_number++;
         char *newline = strchr(line, '\n');
         if (newline)
-            *newline = '\0'; // Remove the newline character, if present
+            *newline = '\0';
 
         char *opcode = strtok(line, " \t\n");
         char *arg = strtok(NULL, " \t\n");
 
         if (opcode == NULL)
-            continue; // Ignore empty lines
+            continue;
 
-        // Execute Monty bytecode commands
         if (strcmp(opcode, "push") == 0)
         {
             if (arg == NULL || !isNumber(arg))
@@ -81,27 +75,13 @@ while (1)
     }
 
     free(line);
-}
 
-/**
- * isNumber - Check if a string is a valid integer
- * @str: String to check
- * Return: 1 if it's a valid integer, 0 otherwise
- */
-int isNumber(char *str)
-{
-    if (str == NULL || *str == '\0')
-        return 0;
-
-    int i = 0;
-    if (str[0] == '-')
-        i = 1;
-
-    for (; str[i] != '\0'; i++)
+    // Manually free the stack at the end
+    while (stack != NULL)
     {
-        if (str[i] < '0' || str[i] > '9')
-            return 0;
+        stack_t *temp = stack;
+        stack = stack->next;
+        free(temp);
     }
-
-    return 1;
 }
+

@@ -1,13 +1,11 @@
-#define _GNU_SOURCE
-#include <string.h>
 #include "monty.h"
 
-int line_number = 0; // Initialize line_number
+int line_number = 0;
 
 int main(int argc, char *argv[])
 {
     FILE *file;
-    
+
     if (argc != 2)
     {
         fprintf(stderr, "USAGE: monty file\n");
@@ -24,5 +22,14 @@ int main(int argc, char *argv[])
     processCommands(file);
 
     fclose(file);
+
+    // Manually free the stack at the end
+    while (stack != NULL)
+    {
+        stack_t *temp = stack;
+        stack = stack->next;
+        free(temp);
+    }
+
     return (0);
 }
