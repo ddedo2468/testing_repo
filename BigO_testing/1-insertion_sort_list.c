@@ -12,23 +12,29 @@ void insertion_sort_list(listint_t **list)
     if (!*list || !list || !(*list)->next)
         return;
 
-    for (current = (*list)->next ; current != NULL ; current = nextNode)
+    for (current = (*list)->next; current != NULL; current = nextNode)
     {
         nextNode = current->next;
+        sorted = current;
 
-        if (sorted->n <= current->n)
-            continue;
-
-        for (sorted = current->prev ; sorted->n > current->n & sorted != NULL ; sorted = sorted->prev)
+        while (sorted->prev && sorted->n < sorted->prev->n)
         {
-            if (sorted->prev != NULL)
-                sorted->prev->next = current;
-            current->next = sorted;
-            current->prev = sorted->prev;
-            sorted->prev = current;
+            if (sorted->next != NULL)
+                sorted->next->prev = sorted->prev;
 
-            if (current->prev == NULL)
-                *list = current;
+            if (sorted->prev->prev != NULL)
+                sorted->prev->prev->next = sorted;
+
+            sorted->prev->next = sorted->next;
+            sorted->next = sorted->prev;
+            sorted->prev = sorted->prev->prev;
+
+            if (sorted->next != NULL)
+                sorted->next->prev = sorted;
+
+            if (sorted->prev == NULL)
+                *list = sorted;
+
             print_list(*list);
         }
     }
