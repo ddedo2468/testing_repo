@@ -18,7 +18,7 @@ class BaseModel:
         self.updated_at = datetime.datetime.now()
         return self.updated_at 
 
-    def to_dict(self,):
+    def to_dict(self):
         self.__dict__.update({'__class__': self.__class__.__name__})
         for key, value in self.__dict__.items():
             if isinstance(value, type(datetime)):
