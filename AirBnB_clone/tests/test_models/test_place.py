@@ -23,7 +23,7 @@ class Test_PlaceModel(unittest.TestCase):
         self.assertTrue(hasattr(self.model, "price_by_night"))
         self.assertTrue(hasattr(self.model, "latitude"))
         self.assertTrue(hasattr(self.model, "longitude"))
-        self.assertTrue(hasattr(self.model, "amenities"))
+        self.assertTrue(hasattr(self.model, "amenity_ids"))
         self.assertEqual(self.model.city_id, "")
         self.assertEqual(self.model.user_id, "")
         self.assertEqual(self.model.name, "")
@@ -34,7 +34,7 @@ class Test_PlaceModel(unittest.TestCase):
         self.assertEqual(self.model.price_by_night, 0)
         self.assertEqual(self.model.latitude, 0.0)
         self.assertEqual(self.model.longitude, 0.0)
-        self.assertEqual(self.model.amenities, [''])
+        self.assertEqual(self.model.amenity_ids, [])
 
 
 if __name__ == "__main__":
