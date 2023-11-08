@@ -7,7 +7,7 @@ class Place(BaseModel):
     """ Define the Place class """
     city_id = ""
     user_id = ""
-    name ""
+    name = ""
     description = ""
     number_rooms = ""
     number_bathrooms = ""
