@@ -11,11 +11,12 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """ define the hbnb command interpreter """
     prompt = "(hbnb) "
-    validCls = ["BaseModel", "User", "State",\
-            "City", "Place", "Review", "Amenity"]
+    validCls = ["BaseModel", "User", "State",
+                "City", "Place", "Review", "Amenity"]
 
     def do_quit(self, arg):
         """ exit the command line """
@@ -26,12 +27,12 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
-    def emtpyline(self):
+    def emptyline(self):
         """ handle an empty line prints nothing """
         pass
 
     def do_create(self, arg):
-        """"""
+        """  Creates a new instance of a given class. The class' ID is printed and the instance is saved to the file file.json.  """
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -43,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj.id)
 
     def do_show(self, arg):
-        """"""
+        """ shows all information about a class  """
         args = arg.split()
         all_obj = storage.all()
 
@@ -61,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
                 print(all_obj[obj])
 
     def do_destroy(self, arg):
-        """"""
+        """ Deletes an instance of a given class with a given ID.  """
         args = arg.split()
         all_obj = storage.all()
 
@@ -80,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_all(self, arg):
-        """ """
+        """ Prints all string representation of all instances of a given class.  """
         class_name = arg.split()[0] if arg else None
         obj_list = []
 
@@ -91,10 +92,10 @@ class HBNBCommand(cmd.Cmd):
                 if not class_name or class_name == obj.__class__.__name__:
                     obj_list.append(str(obj))
 
-            print(obj_list) 
+            print(obj_list)
 
     def do_update(self, arg):
-        """ """
+        """ Updates an instance based on the class name, id, and kwargs passed.  """
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")

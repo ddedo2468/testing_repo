@@ -3,8 +3,9 @@ import models
 from datetime import datetime
 from uuid import uuid4
 
+
 class BaseModel:
-    
+
     def __init__(self, *args, **kwargs):
         """self.updated_at = datetime.datetime.now()
         self.id = str(uuid.uuid4())
@@ -24,14 +25,13 @@ class BaseModel:
         else:
             models.storage.new(self)
 
-
     def __str__(self):
         new = (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
         return new
-       
+
     def save(self):
         self.updated_at = datetime.today()
-        models.storage.save() 
+        models.storage.save()
 
     def to_dict(self):
         new_dict = self.__dict__.copy()
