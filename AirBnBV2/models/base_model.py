@@ -14,18 +14,15 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
         else:
-            # Check if '__class__' is in kwargs before deleting it
             if '__class__' in kwargs:
                 del kwargs['__class__']
 
-            # Check if 'updated_at' is in kwargs before accessing it
             if 'updated_at' in kwargs:
                 kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
                                                          '%Y-%m-%dT%H:%M:%S.%f')
             else:
                 kwargs['updated_at'] = datetime.now()
 
-            # Check if 'created_at' is in kwargs before accessing it
             if 'created_at' in kwargs:
                 kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
                                                          '%Y-%m-%dT%H:%M:%S.%f')
