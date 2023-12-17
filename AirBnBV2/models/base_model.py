@@ -32,6 +32,19 @@ class BaseModel:
 
             self.__dict__.update(kwargs)
 
+    def __str__(self):
+        """returns a string
+        Return:
+            returns a string of class name, id, and dictionary
+        """
+        return "[{}] ({}) {}".format(
+            type(self).__name__, self.id, self.__dict__)
+
+    def __repr__(self):
+        """return a string representaion
+        """
+        return self.__str__()
+
     def save(self):
         """updates the public instance attribute updated_at to current
         """
