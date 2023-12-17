@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
                 key_value = arg.split("=")
                 key, value = key_value
                 # check wether value is str
-                if value.startwith('"') and value.endwith('"'):
+                if value.startswith('"') and value.endswith('"'):
                     value = value[1:-1].replace("_", " ").replace('"', '\\"')
                 # check wether value is float
                 elif '.' in value:
