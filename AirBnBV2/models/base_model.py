@@ -5,9 +5,8 @@ from datetime import datetime
 
 
 class BaseModel:
-    """A base class for all hbnb models"""
     def __init__(self, *args, **kwargs):
-        """Instatntiates a new model"""
+        """Instantiates a new model"""
         if not kwargs:
             from models import storage
             self.id = str(uuid.uuid4())
@@ -15,17 +14,25 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
         else:
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            del kwargs['__class__']
-            self.__dict__.update(kwargs)
+            # Check if '__class__' is in kwargs before deleting it
+            if '__class__' in kwargs:
+                del kwargs['__class__']
 
-    def __str__(self):
-        """Returns a string representation of the instance"""
-        cls = (str(type(self)).split('.')[-1]).split('\'')[0]
-        return '[{}] ({}) {}'.format(cls, self.id, self.__dict__)
+            # Check if 'updated_at' is in kwargs before accessing it
+            if 'updated_at' in kwargs:
+                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
+            else:
+                kwargs['updated_at'] = datetime.now()
+
+            # Check if 'created_at' is in kwargs before accessing it
+            if 'created_at' in kwargs:
+                kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
+            else:
+                kwargs['created_at'] = datetime.now()
+
+            self.__dict__.update(kwargs)
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
