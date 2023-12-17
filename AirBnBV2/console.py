@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
+                    if pline[0] is '{' and pline[-1] is '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -123,15 +123,14 @@ class HBNBCommand(cmd.Cmd):
             for arg in arg_list[1:]:
                 key_value = arg.split("=")
                 key, value = key_value
-                #check wether value is str
+                # check wether value is str
                 if value.startwith('"') and value.endwith('"'):
                     value = value[1:-1].replace("_", " ").replace('"', '\\"')
-                #check wether value is float
-                elif  '.' in value:
+                # check wether value is float
+                elif '.' in value:
                     float(value)
                 else:
-                    #if value is int
-	            int(value)
+                    int(value)
                 param_dict[key] = value
 
         except SyntaxError:
@@ -336,6 +335,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
