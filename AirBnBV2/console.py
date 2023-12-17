@@ -128,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
                     value = value[1:-1].replace("_", " ").replace('"', '\\"')
                 #check wether value is float
                 elif  '.' in value:
-	            float(value)
+                    float(value)
                 else:
                     #if value is int
 	            int(value)
