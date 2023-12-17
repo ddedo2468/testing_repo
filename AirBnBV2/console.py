@@ -121,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
 	
             arg_list = args.split(" ")
             param_dict = {}
-            for arg in key_value[1:]:
+            for arg in arg_list[1:]:
                 key_value = arg.split("=")
                 key, value = key_value
                 #check wether value is str
