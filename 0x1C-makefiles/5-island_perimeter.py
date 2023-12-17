@@ -1,20 +1,14 @@
 #!/usr/bin/python3
-"""island permiter
-"""
+""" island permiter """
 
 
 def island_perimeter(grid):
     """
     get the perimeter of an island
 
-    island_perimeter:
-        the island perimeter
-
-        grid (list):
-            an array that shows the island's informations
-
-    Returns:
-        The island perimeter
+    - island_perimeter: the island perimeter
+    - grid (list): an array that shows the island's informations
+    - Return: The island perimeter
     """
     island_perimeter = 0
     row, column = len(grid), len(grid[0])
