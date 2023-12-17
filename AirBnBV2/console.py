@@ -118,7 +118,6 @@ class HBNBCommand(cmd.Cmd):
         try:
             if not args:
                 raise SyntaxError()
-	
             arg_list = args.split(" ")
             param_dict = {}
             for arg in arg_list[1:]:
@@ -126,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
                 key, value = key_value
                 #check wether value is str
                 if value.startwith('"') and value.endwith('"'):
-                    value = value.replace("_", " ").replace('"', '\\"')
+                    value = value[1:-1].replace("_", " ").replace('"', '\\"')
                 #check wether value is float
                 elif  '.' in value:
 	            float(value)
