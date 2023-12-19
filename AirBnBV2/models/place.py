@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 import models
 from os import getenv
+import shlex
 
 
 class Place(BaseModel, Base):
