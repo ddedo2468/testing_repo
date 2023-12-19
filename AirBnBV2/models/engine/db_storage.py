@@ -14,27 +14,24 @@ from models.amenity import Amenity
 
 
 class DBStorage:
-    """ DB STORAGE CLASS """
-
+    """ create tables in environmental"""
     __engine = None
     __session = None
 
     def __init__(self):
-        """ constructor method """
-        env = getenv("HBNB_ENV")
         user = getenv("HBNB_MYSQL_USER")
         passwd = getenv("HBNB_MYSQL_PWD")
-        db = getenv("HBNB_MYSQL_HOST")
-        host = getenv("HBNB_MYSQL_DB")
+        db = getenv("HBNB_MYSQL_DB")
+        host = getenv("HBNB_MYSQL_HOST")
+        env = getenv("HBNB_ENV")
 
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
                                       .format(user, passwd, host, db),
                                       pool_pre_ping=True)
+
         if env == "test":
             Base.metadata.drop_all(self.__engine)
 
-
-        
 
     def all(self, cls=None):
         """
