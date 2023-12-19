@@ -54,9 +54,12 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """ return a dictionary of baseModel instances"""
+        """creates dictionary of the class  and returns
+        Return:
+            returns a dictionary of all the key values in __dict__
+        """
         my_dict = dict(self.__dict__)
-        my_dict["__class__"] = self.__class__.__name__
+        my_dict["__class__"] = str(type(self).__name__)
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
         if '_sa_instance_state' in my_dict.keys():
