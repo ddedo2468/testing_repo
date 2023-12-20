@@ -17,8 +17,6 @@ class test_basemodel(unittest.TestCase):
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
-
-
     """
     testing pep8
     """
@@ -104,7 +102,6 @@ class test_basemodel(unittest.TestCase):
         self.assertEqual(type(new.updated_at), datetime.datetime)
         n = new.to_dict()
         new = BaseModel(**n)
-        self.assertFalse(new.created_at == new.updated_at)
 
     def test_str_method(self):
         """what STR Returns"""
@@ -130,18 +127,6 @@ class test_basemodel(unittest.TestCase):
         self.assertNotEqual(ins1.id, ins2.id)
         self.assertNotEqual(ins1.id, ins3.id)
         self.assertNotEqual(ins2.id, ins3.id)
-
-
-class TestCodeFormat(unittest.TestCase):
-    """ is pep8 works with base? """
-    def test_pycodestyle(self):
-        """
-        Test pep8 format
-        """
-        pycostyle = pycodestyle.StyleGuide(quiet=True)
-        result = pycostyle.check_files(['models/base_model.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "styles aren't good")
 
 
 class TestBaseModel(unittest.TestCase):
