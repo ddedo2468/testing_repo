@@ -6,6 +6,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from models.place import Place
+import pep8
 
 
 class City(BaseModel, Base):
